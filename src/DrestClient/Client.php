@@ -60,7 +60,7 @@ class Client
         if (!is_object($representation)) {
             // Check if the class is namespaced, if so instantiate from root
             $className = (strstr($representation, '\\') !== false) ? '\\' . ltrim($representation, '\\') : $representation;
-            $className = (!class_exists($className)) ? '\\Drest\\Representation\\' . ltrim($className, '\\') : $className;
+            $className = (!class_exists($className)) ? '\\DrestCommon\\Representation\\' . ltrim($className, '\\') : $className;
             if (!class_exists($className)) {
                 throw RepresentationException::unknownRepresentationClass($representation);
             }
