@@ -1,9 +1,9 @@
 <?php
 namespace DrestClient;
 
-use Drest\Client\Response;
-use Drest\Error\ErrorException;
-use Drest\Query\ResultSet;
+use DrestClient\Response;
+use DrestCommon\Error\ErrorException;
+use DrestCommon\ResultSet;
 use DrestCommon\Representation\AbstractRepresentation;
 use DrestCommon\Representation\RepresentationException;
 use Guzzle\Http\Client as GuzzleClient;
@@ -52,7 +52,7 @@ class Client
     /**
      * The representation class to be used
      * @param mixed $representation
-     * @throws Representation\RepresentationException
+     * @throws \DrestCommon\Representation\RepresentationException
      */
     public function setRepresentationClass($representation)
     {
@@ -182,7 +182,7 @@ class Client
      * @param string $path the path to post this object to.
      * @param object $object the object to be posted to given path
      * @param array $headers an array of headers to send with the request
-     * @return \Drest\Client\Response $response Response object with a populated representation instance
+     * @return \DrestClient\Response $response Response object with a populated representation instance
      * @throws ErrorException upon the return of any error document from the server
      */
     public function patch($path, &$object, array $headers = array())
@@ -265,7 +265,7 @@ class Client
         if (empty($this->errorResponseClass))
         {
             foreach ($this->getErrorDocumentClasses() as $errorClass) {
-                /* @var \Drest\Error\Response\ResponseInterface $errorClass */
+                /* @var \DrestCommon\Error\Response\ResponseInterface $errorClass */
                 if ($errorClass::getContentType() == $contentType) {
                     $this->errorResponseClass = $errorClass;
                     break;
@@ -302,7 +302,7 @@ class Client
 
         foreach (get_declared_classes() as $className) {
             $reflClass = new \ReflectionClass($className);
-            if (array_key_exists('Drest\\Error\\Response\\ResponseInterface', $reflClass->getInterfaces())) {
+            if (array_key_exists('DrestCommon\\Error\\Response\\ResponseInterface', $reflClass->getInterfaces())) {
                 $classes[] = $className;
             }
         }

@@ -9,11 +9,11 @@
          processIsolation="false"
          stopOnFailure="false"
          syntaxCheck="true"
-         bootstrap="./tests/DrestTests/Bootstrap.php">
+         bootstrap="./tests/DrestClientTests/Bootstrap.php">
 
     <testsuites>
-        <testsuite name="Drest Test Suite">
-            <directory>./tests/DrestTests</directory>
+        <testsuite name="Drest Client Test Suite">
+            <directory>./tests/DrestClientTests</directory>
         </testsuite>
     </testsuites>
 

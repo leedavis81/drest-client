@@ -8,11 +8,7 @@ $loader = require '../../vendor/autoload.php';
 // Add the entities namespace to the loader
 $loader->add('Client', __DIR__);
 
-//@todo: remove this, it's only temporary, common should be loaded via composer
-$loader->add('DrestCommon', __DIR__ . '/../../../drest-common/src');
-
 $client = new DrestClient\Client('http://drest-example1.localhost', 'Json');
-
 
 /* Post an item */
 $user = Client\Entities\User::create()
@@ -34,7 +30,7 @@ try
     {
         echo 'The resource was created at: ' . $location;
     }
-} catch (\Drest\Error\ErrorException $e)
+} catch (\DrestCommon\Error\ErrorException $e)
 {
     echo $e->getErrorDocument()->render();
 }

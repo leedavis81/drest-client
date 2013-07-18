@@ -1,14 +1,14 @@
 <?php
 namespace DrestClient;
 
-use Drest\Representation\AbstractRepresentation;
-use Drest\Response as DrestResponse;
+use DrestCommon\Representation\AbstractRepresentation;
+use DrestCommon\Response\Response as DrestResponse;
 
 class Response extends DrestResponse
 {
     /**
      * Representation object
-     * @var \Drest\Representation\AbstractRepresentation
+     * @var \DrestCommon\Representation\AbstractRepresentation
      */
     protected $representation;
 
@@ -24,7 +24,7 @@ class Response extends DrestResponse
 
     /**
      * Get the responded representation object
-     * @return \Drest\Representation\AbstractRepresentation
+     * @return \DrestCommon\Representation\AbstractRepresentation
      */
     public function getRepresentation()
     {
