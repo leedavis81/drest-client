@@ -9,7 +9,7 @@ class Version
     /**
      * Current Version
      */
-    const VERSION = '0.0.1';
+    const VERSION = '1.0.0-beta';
 
     /**
      * Compares a previous version with the current one.
