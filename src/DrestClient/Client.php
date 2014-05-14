@@ -73,7 +73,7 @@ class Client
     }
 
     /**
-     * get an instance of representation class we interacting with
+     * Get an instance of representation class we interacting with
      * @return AbstractRepresentation $representation
      */
     protected function getRepresentationInstance()
@@ -83,8 +83,8 @@ class Client
 
     /**
      * Get data from a path
-     * @param string $path   - the path to be requested
-     * @param array $headers - any additional headers you want to send on the request
+     * @param string $path              - the path to be requested
+     * @param array $headers            - any additional headers you want to send on the request
      * @throws ErrorException
      * @return Response
      */
@@ -110,11 +110,11 @@ class Client
 
     /**
      * Post an object. You can optionally append variables to the path for posting (eg /users?sort=age).
-     * @param string $path                    - the path to post this object to.
-     * @param object $object                    - the object to be posted to given path
-     * @param array $headers                - an array of headers to send with the request
-     * @return Response                $response                - Response object with a populated representation instance
-     * @throws ErrorException                                    - upon the return of any error document from the server
+     * @param string $path              - the path to post this object to.
+     * @param object $object            - the object to be posted to given path
+     * @param array $headers            - an array of headers to send with the request
+     * @return Response $response       - Response object with a populated representation instance
+     * @throws ErrorException           - upon the return of any error document from the server
      */
     public function post($path, &$object, array $headers = array())
     {
@@ -145,11 +145,11 @@ class Client
 
     /**
      * Put an object at a set location ($path)
-     * @param string $path                    - the path to post this object to.
-     * @param object $object                    - the object to be posted to given path
-     * @param array $headers                - an array of headers to send with the request
-     * @return Response    $response                            - Response object with a populated representation instance
-     * @throws ErrorException                                   - upon the return of any error document from the server
+     * @param string $path              - the path to post this object to.
+     * @param object $object            - the object to be posted to given path
+     * @param array $headers            - an array of headers to send with the request
+     * @return Response $response       - Response object with a populated representation instance
+     * @throws ErrorException           - upon the return of any error document from the server
      */
     public function put($path, &$object, array $headers = array())
     {
