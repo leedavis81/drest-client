@@ -1,9 +1,7 @@
 <?php
 namespace DrestClient;
 
-use DrestClient\Response;
 use DrestCommon\Error\ErrorException;
-use DrestCommon\ResultSet;
 use DrestCommon\Representation\AbstractRepresentation;
 use DrestCommon\Representation\RepresentationException;
 use Guzzle\Http\Client as GuzzleClient;
@@ -59,8 +57,14 @@ class Client
         $this->errorResponseClass = null;
         if (!is_object($representation)) {
             // Check if the class is namespaced, if so instantiate from root
-            $className = (strstr($representation, '\\') !== false) ? '\\' . ltrim($representation, '\\') : $representation;
-            $className = (!class_exists($className)) ? '\\DrestCommon\\Representation\\' . ltrim($className, '\\') : $className;
+            $className = (strstr($representation, '\\') !== false) ? '\\' . ltrim(
+                    $representation,
+                    '\\'
+                ) : $representation;
+            $className = (!class_exists($className)) ? '\\DrestCommon\\Representation\\' . ltrim(
+                    $className,
+                    '\\'
+                ) : $className;
             if (!class_exists($className)) {
                 throw RepresentationException::unknownRepresentationClass($representation);
             }
@@ -83,8 +87,8 @@ class Client
 
     /**
      * Get data from a path
-     * @param string $path              - the path to be requested
-     * @param array $headers            - any additional headers you want to send on the request
+     * @param string $path - the path to be requested
+     * @param array $headers - any additional headers you want to send on the request
      * @throws ErrorException
      * @return Response
      */
@@ -110,9 +114,9 @@ class Client
 
     /**
      * Post an object. You can optionally append variables to the path for posting (eg /users?sort=age).
-     * @param string $path              - the path to post this object to.
-     * @param object $object            - the object to be posted to given path
-     * @param array $headers            - an array of headers to send with the request
+     * @param string $path - the path to post this object to.
+     * @param object $object - the object to be posted to given path
+     * @param array $headers - an array of headers to send with the request
      * @return Response $response       - Response object with a populated representation instance
      * @throws ErrorException           - upon the return of any error document from the server
      */
@@ -145,9 +149,9 @@ class Client
 
     /**
      * Put an object at a set location ($path)
-     * @param string $path              - the path to post this object to.
-     * @param object $object            - the object to be posted to given path
-     * @param array $headers            - an array of headers to send with the request
+     * @param string $path - the path to post this object to.
+     * @param object $object - the object to be posted to given path
+     * @param array $headers - an array of headers to send with the request
      * @return Response $response       - Response object with a populated representation instance
      * @throws ErrorException           - upon the return of any error document from the server
      */
@@ -242,11 +246,9 @@ class Client
         $errorException->setResponse($response);
 
         $contentType = $response->getHttpHeader('Content-Type');
-        if (!empty($contentType))
-        {
+        if (!empty($contentType)) {
             $errorClass = $this->getErrorDocumentClass($contentType);
-            if (!is_null($errorClass))
-            {
+            if (!is_null($errorClass)) {
                 $errorDocument = $errorClass::createFromString($response->getBody());
                 $errorException->setErrorDocument($errorDocument);
             }
@@ -262,8 +264,7 @@ class Client
      */
     protected function getErrorDocumentClass($contentType)
     {
-        if (empty($this->errorResponseClass))
-        {
+        if (empty($this->errorResponseClass)) {
             foreach ($this->getErrorDocumentClasses() as $errorClass) {
                 /* @var \DrestCommon\Error\Response\ResponseInterface $errorClass */
                 if ($errorClass::getContentType() == $contentType) {
