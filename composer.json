@@ -16,7 +16,7 @@
         "php": "~5.4|~7.0",
         "leedavis81/drest-common": "^1.0",
         "guzzle/guzzle": "~3.6",
-        "symfony/console": "~2.0",
+        "symfony/console": "~2.0|~3.0",
         "zendframework/zend-code": "~2.0"
     },
     "require-dev": {
