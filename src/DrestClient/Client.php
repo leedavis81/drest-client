@@ -117,13 +117,14 @@ class Client
      * @param string $path - the path to post this object to.
      * @param object $object - the object to be posted to given path
      * @param array $headers - an array of headers to send with the request
+     * @param string $withKey - an optional key to wrap the object in
      * @return Response $response       - Response object with a populated representation instance
      * @throws ErrorException           - upon the return of any error document from the server
      */
-    public function post($path, &$object, array $headers = array())
+    public function post($path, &$object, array $headers = array(), $withKey = null)
     {
         $representation = $this->getRepresentationInstance();
-        $representation->update($object);
+        $representation->update($object, $withKey);
 
         $request = $this->transport->post(
             $path,
@@ -152,13 +153,14 @@ class Client
      * @param string $path - the path to post this object to.
      * @param object $object - the object to be posted to given path
      * @param array $headers - an array of headers to send with the request
+     * @param string $withKey - an optional key to wrap the object in
      * @return Response $response       - Response object with a populated representation instance
      * @throws ErrorException           - upon the return of any error document from the server
      */
-    public function put($path, &$object, array $headers = array())
+    public function put($path, &$object, array $headers = array(), $withKey = null)
     {
         $representation = $this->getRepresentationInstance();
-        $representation->update($object);
+        $representation->update($object, $withKey);
 
         $request = $this->transport->put(
             $path,
@@ -186,13 +188,14 @@ class Client
      * @param string $path the path to post this object to.
      * @param object $object the object to be posted to given path
      * @param array $headers an array of headers to send with the request
+     * @param string $withKey - an optional key to wrap the object in
      * @return \DrestClient\Response $response Response object with a populated representation instance
      * @throws ErrorException upon the return of any error document from the server
      */
-    public function patch($path, &$object, array $headers = array())
+    public function patch($path, &$object, array $headers = array(), $withKey = null)
     {
         $representation = $this->getRepresentationInstance();
-        $representation->update($object);
+        $representation->update($object, $withKey);
 
         $request = $this->transport->patch(
             $path,
