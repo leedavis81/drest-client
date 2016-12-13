@@ -285,33 +285,10 @@ class Client
      */
     protected function getErrorDocumentClasses()
     {
-        $classes = array();
-        $path = realpath(__DIR__ . DIRECTORY_SEPARATOR . 'Error' . DIRECTORY_SEPARATOR . 'Response');
-        $iterator = new \RecursiveIteratorIterator(
-            new \RecursiveDirectoryIterator($path, \FilesystemIterator::SKIP_DOTS),
-            \RecursiveIteratorIterator::LEAVES_ONLY
-        );
-
-        foreach ($iterator as $file) {
-            /* @var \SplFileInfo $file */
-            if (!$file->getExtension() === 'php') {
-                continue;
-            }
-            $path = $file->getRealPath();
-
-            if (!empty($path)) {
-                include_once $path;
-            }
-        }
-
-        foreach (get_declared_classes() as $className) {
-            $reflClass = new \ReflectionClass($className);
-            if (array_key_exists('DrestCommon\\Error\\Response\\ResponseInterface', $reflClass->getInterfaces())) {
-                $classes[] = $className;
-            }
-        }
-
-        return $classes;
+        return [
+            'DrestCommon\Error\Response\Json',
+            'DrestCommon\Error\Response\Xml'
+        ];
     }
 
     /**
